@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .header{background-color: #333; overflow: hidden;}
+  </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./detailed_description.css" type="text/css">
+</head>
+<body>
+
+  <div class = "header">
+    <ul>
+        <li><a href="./index.html">Home</a></li>
+        <!-- <li><a href="contact.asp">Contact</a></li> -->
+        <li><a href="./about_page.html">About</a></li>
+      </ul>
+    </div>
+
+    <div class="container">
+        <!-- <form action="/action_page.php"> -->
+          <div class="row">
+            <div class="col-25">
+              <label for="subject_name">Subject</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="subject_name" name="subject_name" value="Order Confirmation" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="body">Body</label>
+            </div>
+            <div class="col-75">
+              <textarea id="body" name="body" placeholder="Write something.." style="height:200px" readonly></textarea>
+            </div>
+          </div>
+          <div class="row">
+              <br>
+            <input id="send" type="submit" value="Send" />
+          </div>
+        <!-- </form> -->
+      </div>
+    <script src="./email_client.js"></script>
+</body>
+</html>
