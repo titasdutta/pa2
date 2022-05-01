@@ -6,6 +6,7 @@
   </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./detailed_description.css" type="text/css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 
@@ -44,58 +45,58 @@
               <input type="text" id="price" name="price" readonly>
             </div>
           </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="fname">First Name</label>
-            </div>
-            <div class="col-75">
-              <input type="text" id="fname" name="fname" placeholder="Enter your first name...">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="lname">Last Name</label>
-            </div>
-            <div class="col-75">
-              <input type="text" id="lname" name="lname" placeholder="Enter your last name...">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="phone">Phone Number</label>
-            </div>
-            <div class="col-75">
-              <input type="text" id="phone" name="phone" placeholder="Put in (XXX) - XXX - XXXX format" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="ship_address">Shipping Address</label>
-            </div>
-            <div class="col-75">
-              <input type="text" id="ship_address" name="ship_address" placeholder="Enter Shipping Address Format (e.g. 1776 First Street, Irvine, California 92617)">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="ship_method">Shipping Method</label>
-            </div>
-            <div class="col-75">
-              <select id="ship_method" name="ship_method">
-                <option value="Overnight">Overnight</option>
-                <option value="2-Days Expedited">2-Days Expedited</option>
-                <option value="6-Days Ground">6-Days Ground</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label for="cred_card">Credit/Debit Card</label>
-            </div>
-            <div class="col-75">
-              <input type="text" id="cred_card" name="cred_card" placeholder="Enter Credit/Debit Card number...">
-            </div>
-          </div>
+<!--          <div class="row">-->
+<!--            <div class="col-25">-->
+<!--              <label for="fname">First Name</label>-->
+<!--            </div>-->
+<!--            <div class="col-75">-->
+<!--              <input type="text" id="fname" name="fname" placeholder="Enter your first name...">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-25">-->
+<!--              <label for="lname">Last Name</label>-->
+<!--            </div>-->
+<!--            <div class="col-75">-->
+<!--              <input type="text" id="lname" name="lname" placeholder="Enter your last name...">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-25">-->
+<!--              <label for="phone">Phone Number</label>-->
+<!--            </div>-->
+<!--            <div class="col-75">-->
+<!--              <input type="text" id="phone" name="phone" placeholder="Put in (XXX) - XXX - XXXX format" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-25">-->
+<!--              <label for="ship_address">Shipping Address</label>-->
+<!--            </div>-->
+<!--            <div class="col-75">-->
+<!--              <input type="text" id="ship_address" name="ship_address" placeholder="Enter Shipping Address Format (e.g. 1776 First Street, Irvine, California 92617)">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-25">-->
+<!--              <label for="ship_method">Shipping Method</label>-->
+<!--            </div>-->
+<!--            <div class="col-75">-->
+<!--              <select id="ship_method" name="ship_method">-->
+<!--                <option value="Overnight">Overnight</option>-->
+<!--                <option value="2-Days Expedited">2-Days Expedited</option>-->
+<!--                <option value="6-Days Ground">6-Days Ground</option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-25">-->
+<!--              <label for="cred_card">Credit/Debit Card</label>-->
+<!--            </div>-->
+<!--            <div class="col-75">-->
+<!--              <input type="text" id="cred_card" name="cred_card" placeholder="Enter Credit/Debit Card number...">-->
+<!--            </div>-->
+<!--          </div>-->
           <!-- <div class="row">
             <div class="col-25">
               <label for="subject">Subject</label>
@@ -104,10 +105,11 @@
               <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
             </div>
           </div> -->
-          <div class="row">
-              <br>
-            <input id="submit" type="submit" value="Submit" />
-          </div>
+<!--          <div class="row">-->
+<!--              <br>-->
+<!--            -->
+<!--          </div>-->
+          <input id="submit" type="submit" value="Add to Cart" />
         </form>
       </div>
     <script src="./detailed_description.js"></script>

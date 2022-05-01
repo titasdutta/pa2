@@ -1,3 +1,41 @@
+$(document).ready(function() {
+    var product = location.href.split("?")[1].split("=")[1];
+    jQuery.ajax({
+        url: "./product",
+        data: {
+            "name": product
+        },
+        method: "GET",
+        success: function(result){
+            //let resultJSON = JSON.parse(result);
+            document.getElementById("product_name").value = result["product"];
+            document.getElementById("price").value = "$" + parseInt(result["price"]);
+        },
+        error: function(result){
+            console.log("MESSED UP");
+        }
+    });
+ });
+
+// var product = location.href.split("?")[1].split("=")[1];
+// document.getElementById("product_name").value = "BANANANANANANAN";
+// jQuery.ajax({
+//         url: "/product",
+//         data: {
+//             name: product
+//         },
+//         method: "GET",
+//         success: function(result){
+//             let resultJSON = JSON.parse(result);
+//             document.getElementById("product_name").value = resultJSON["product"];
+//             document.getElementById("price").value = "$" + parseInt(resultJSON["price"]);
+//         }
+//         error: function(result){
+//             console.log("MESSED UP");
+//         }
+// });
+
+
 function parseQString(query){
     var query_params = query.split("%20");
     console.log(query_params);
@@ -5,14 +43,14 @@ function parseQString(query){
     return new_query;
 }
 
-var qString = location.href.split("?")[1].split("&")[0];
-document.getElementById("product_name").value = parseQString(qString);
+//var qString = location.href.split("?")[1].split("&")[0];
+//document.getElementById("product_name").value = parseQString(qString);
 
-var image =  location.href.split("?")[1].split("&")[1];
-document.getElementById("cloth").src = image;
-
-var price =  location.href.split("?")[1].split("&")[2];
-document.getElementById("price").value = "$" + parseInt(price);
+//var image =  location.href.split("?")[1].split("&")[1];
+//document.getElementById("cloth").src = image;
+//
+//var price =  location.href.split("?")[1].split("&")[2];
+//document.getElementById("price").value = "$" + parseInt(price);
 
 document.getElementById("quantity").addEventListener('change', function() {
     var quantity = document.getElementById("quantity").value;
