@@ -1,11 +1,21 @@
 package com.example.disc3;
 
+import com.google.gson.JsonObject;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 @WebServlet(name = "product", value = "/product")
 public class ProductServlet extends HttpServlet {
@@ -17,7 +27,38 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        String pname = req.getParameter("name");
 
+        PrintWriter out = resp.getWriter();
+
+        try{
+            Context context = new InitialContext();
+            Context env = (Context) context.lookup("java:comp/env");
+            DataSource ds = (DataSource) env.lookup("jdbc/inf124");
+            Connection con = ds.getConnection();
+
+            Statement stmt = con.createStatement();
+
+            String q = "SELECT * from product p WHERE p.pname = \"" + pname + "\"";
+            ResultSet rs = stmt.executeQuery(q);
+            JsonObject respObject = new JsonObject();
+
+            while(rs.next()){
+                String product = rs.getString("pname");
+                Double price = rs.getDouble("price");
+
+                respObject.addProperty("product", product);
+                respObject.addProperty("price", price);
+                resp.setStatus(200);
+            }
+
+            out.write(respObject.toString());
+            con.close();
+        } catch (Exception e){
+            e.printStackTrace();
+            resp.setStatus(500);
+        }
     }
 
     @Override
