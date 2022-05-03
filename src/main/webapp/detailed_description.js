@@ -1,3 +1,5 @@
+var price = 0;
+var product_name = "";
 $(document).ready(function() {
     var product = location.href.split("?")[1].split("=")[1];
     jQuery.ajax({
@@ -10,31 +12,14 @@ $(document).ready(function() {
             //let resultJSON = JSON.parse(result);
             document.getElementById("product_name").value = result["product"];
             document.getElementById("price").value = "$" + parseInt(result["price"]);
+            product_name = result["product"];
+            price = parseInt(result["price"]);
         },
         error: function(result){
             console.log("MESSED UP");
         }
     });
  });
-
-// var product = location.href.split("?")[1].split("=")[1];
-// document.getElementById("product_name").value = "BANANANANANANAN";
-// jQuery.ajax({
-//         url: "/product",
-//         data: {
-//             name: product
-//         },
-//         method: "GET",
-//         success: function(result){
-//             let resultJSON = JSON.parse(result);
-//             document.getElementById("product_name").value = resultJSON["product"];
-//             document.getElementById("price").value = "$" + parseInt(resultJSON["price"]);
-//         }
-//         error: function(result){
-//             console.log("MESSED UP");
-//         }
-// });
-
 
 function parseQString(query){
     var query_params = query.split("%20");
@@ -43,20 +28,18 @@ function parseQString(query){
     return new_query;
 }
 
-//var qString = location.href.split("?")[1].split("&")[0];
-//document.getElementById("product_name").value = parseQString(qString);
-
 //var image =  location.href.split("?")[1].split("&")[1];
 //document.getElementById("cloth").src = image;
 //
 //var price =  location.href.split("?")[1].split("&")[2];
 //document.getElementById("price").value = "$" + parseInt(price);
-
+//var quantity = document.getElementById("quantity").value;
 document.getElementById("quantity").addEventListener('change', function() {
     var quantity = document.getElementById("quantity").value;
     console.log("GOT IN HERE");
     if(quantity && !isNaN(quantity)){
         document.getElementById("price").value = "$" + (parseInt(quantity)*parseInt(price));
+        price = parseInt(quantity)*parseInt(price);
     }
 });
 
@@ -88,13 +71,13 @@ function checkLastName(messages){
     }
 }
 
-function checkCreditCard(messages){
-    let credit = document.getElementById("cred_card").value;
-    if(!credit || credit.length < 16){
-        messages.push("Please enter a valid credit card");
-        // alert("Please enter a valid credit card");
-    }
-}
+//function checkCreditCard(messages){
+//    let credit = document.getElementById("cred_card").value;
+//    if(!credit || credit.length < 16){
+//        messages.push("Please enter a valid credit card");
+//        // alert("Please enter a valid credit card");
+//    }
+//}
 
 function printErrorMessages(messages){
     let error_msg = "Please fix the following errors: ";
@@ -111,13 +94,27 @@ document.getElementById("submit").onclick = function() {
     //alert("Are you sure you want to submit (y/n)?");
     var messages = [];
     checkQuantity(messages);
-    checkFirstName(messages);
-    checkLastName(messages);
+//    checkFirstName(messages);
+//    checkLastName(messages);
     if(messages.length > 0){
         printErrorMessages(messages);
     } else {
-        //window.location.href = "https://www.youtube.com/watch?v=p7YXXieghtos";
-        //window.location.href = "./email_client.html"; 
-    }
+        var quantity = document.getElementById("quantity").value;
+        jQuery.ajax({
+            url: "./shopping_cart",
+            data: {
+                "name": product_name,
+                "quantity": quantity,
+                "price": price
+            },
+            method: "POST",
+            success: function(result){
+                alert("Successfully added to Shopping Cart!");
+            },
+            error: function(result){
+                console.log("MESSED UP");
+            }
+        });
 
+    }
 };
