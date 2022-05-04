@@ -43,7 +43,7 @@ public class OrderDetailsServlet extends HttpServlet {
             ResultSet resultSet = stmt.executeQuery("Select * from orders");
             resp.setContentType("application/json");
             JsonArray order = new JsonArray();
-
+            HttpSession session = req.getSession(true);
 
             while(resultSet.next()){
                 JsonObject product = new JsonObject();
@@ -66,7 +66,7 @@ public class OrderDetailsServlet extends HttpServlet {
                 product.addProperty("shipping", shipping);
                 order.add(product);
             }
-
+            session.setAttribute("order", order);
             out.write(order.toString());
 //            out.print("<table border='1' width='100%'");
 //            out.print("<tr><th>Id</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Shipping Method</th></tr>");
