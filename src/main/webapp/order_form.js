@@ -1,8 +1,10 @@
+var order = null;
 $(document).ready(function() {
     jQuery.ajax({
         url: "./shopping_cart",
         method: "GET",
         success: function(result){
+            order = result;
             handleResult(result);
         },
         error: function(result){
@@ -72,5 +74,26 @@ document.getElementById("place_order").onclick = function() {
         printErrorMessages(messages);
      } else {
         alert("SUCCESS!");
+        var first_name = document.getElementById("fname").value;
+        var last_name = document.getElementById("lname").value;
+        var phone = document.getElementById("phone").value;
+        var shipping = document.getElementById("shipping").value;
+        jQuery.ajax({
+            url: "./order",
+            data: {
+                "order": order,
+                "fname": first_name,
+                "lname": last_name,
+                "phone": phone,
+                "shipping": shipping
+            },
+            method: "POST",
+            success: function(result){
+                alert("Successfully Placed Order!");
+            },
+            error: function(result){
+                console.log("MESSED UP");
+            }
+        });
      }
 };

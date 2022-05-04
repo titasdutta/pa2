@@ -13,7 +13,7 @@
         <h2>Product Order Form</h2>
     </div>
     <div class="d-flex">
-        <form action="" method="">
+        <form action="./order_details.html" method="">
             <label>
                 <span class="fname">First Name <span class="required">*</span></span>
                 <input id="fname" type="text" name="fname">
@@ -24,7 +24,7 @@
             </label>
             <label>
                 <span>Street Address <span class="required">*</span></span>
-                <input type="text" name="houseadd" placeholder="House number and street name" required>
+                <input id="address" type="text" name="houseadd" placeholder="House number and street name" required>
             </label>
             <label>
                 <span>&nbsp;</span>
@@ -44,7 +44,7 @@
             </label>
             <label>
                 <span>Phone <span class="required">*</span></span>
-                <input type="tel" name="city">
+                <input id="phone" type="tel" name="city">
             </label>
             <label>
                 <span>Email Address <span class="required">*</span></span>
@@ -62,6 +62,13 @@
                 <span>Expiry <span class="required">*</span></span>
                 <input id="expiry" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" name="city">
             </label>
+            <span>Shipping <span class="required">*</span></span>
+                <select id="shipping" name="selection">
+                    <option value="select">Select a shipping method...</option>
+                    <option value="overnight">Overnight</option>
+                    <option value="2-day">2-day</option>
+                    <option value="6-day">6-day</option>
+                </select>
         </form>
         <div class="my_order">
             <table id="products">
