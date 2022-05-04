@@ -52,32 +52,10 @@ function checkQuantity(messages){
     if(!quantity || isNaN(quantity)){
         messages.push("Please enter an integer quantity!");
         //alert("Please enter an integer quantity!");
+    } else if(quantity < 1){
+        messages.push("Please enter a quantity of at least 1!");
     }
 }
-
-function checkFirstName(messages){
-    var fname = document.getElementById("fname").value;
-    if(!fname){
-        messages.push("Please enter a first name!");
-        //alert("Please enter a first name!");
-    }
-}
-
-function checkLastName(messages){
-    var lname = document.getElementById("lname").value;
-    if(!lname){
-        messages.push("Please enter a last name!");
-        // alert("Please enter a last name!");
-    }
-}
-
-//function checkCreditCard(messages){
-//    let credit = document.getElementById("cred_card").value;
-//    if(!credit || credit.length < 16){
-//        messages.push("Please enter a valid credit card");
-//        // alert("Please enter a valid credit card");
-//    }
-//}
 
 function printErrorMessages(messages){
     let error_msg = "Please fix the following errors: ";

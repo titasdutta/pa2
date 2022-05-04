@@ -20,7 +20,7 @@ function handleResult(result){
     for(let i = 0; i < cart_size; i++){
         items = items + "<tr><td>" + result[i]["product"] +"</td>" +
         "<td> Quantity: " + result[i]["quantity"] + "</td>" +
-        "<td>" + result[i]["price"] + "</td></tr>";
+        "<td>$" + result[i]["price"] + "</td></tr>";
 
     }
 
