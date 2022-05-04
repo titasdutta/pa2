@@ -34,30 +34,59 @@ public class OrderDetailsServlet extends HttpServlet {
         try
         {
             PrintWriter out=resp.getWriter();
-            out.println("<center><h1>Order Details</h1></center>");
+//            out.println("<center><h1>Order Details</h1></center>");
             Context context = new InitialContext();
             Context env = (Context) context.lookup("java:comp/env");
             DataSource ds = (DataSource) env.lookup("jdbc/inf124");
             Connection connection = ds.getConnection();
             Statement stmt = connection.createStatement();
             ResultSet resultSet = stmt.executeQuery("Select * from orders");
-            resp.setContentType("text/html");
-            out.print("<table border='1' width='100%'");
-            out.print("<tr><th>Id</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Shipping Method</th></tr>");
+            resp.setContentType("application/json");
+            JsonArray order = new JsonArray();
 
 
-            while(resultSet.next())
-            {
-                out.print("<tr><td>"+resultSet.getInt(1)+"</td><td>"+resultSet.getDouble(2)+"</td><td>"+resultSet.getDouble(3)+"</td><td>"+resultSet.getString(4)+"</td><td>"+resultSet.getString(5)+"</td><td>"+resultSet.getString(6)+"</td><td>"+resultSet.getString(7)+"</td>");
+            while(resultSet.next()){
+                JsonObject product = new JsonObject();
+                int order_id = resultSet.getInt("order_id");
+                String product_name = resultSet.getString("product");
+                Double quantity = resultSet.getDouble("quantity");
+                Double price = resultSet.getDouble("price");
+                String fname = resultSet.getString("fname");
+                String lname = resultSet.getString("lname");
+                String phone = resultSet.getString("phone");
+                String shipping = resultSet.getString("shipping");
 
+                product.addProperty("id", order_id);
+                product.addProperty("product_name", product_name);
+                product.addProperty("quantity", quantity);
+                product.addProperty("price", price);
+                product.addProperty("fname", fname);
+                product.addProperty("lname", lname);
+                product.addProperty("phone", phone);
+                product.addProperty("shipping", shipping);
+                order.add(product);
             }
-            out.print("</table>");
 
+            out.write(order.toString());
+//            out.print("<table border='1' width='100%'");
+//            out.print("<tr><th>Id</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Shipping Method</th></tr>");
+//            //System.out.println(resultSet.)
+//
+//            while(resultSet.next())
+//            {
+//                System.out.println("");
+//                out.print("<tr><td>"+resultSet.getInt(1)+"</td><td>"+resultSet.getDouble(2)+"</td><td>"+resultSet.getDouble(3)+"</td><td>"+resultSet.getString(4)+"</td><td>"+resultSet.getString(5)+"</td><td>"+resultSet.getString(6)+"</td><td>"+resultSet.getString(7)+"</td></tr>");
+//
+//            }
+//            out.print("</table>");
+            resp.setStatus(200);
+            out.close();
 
         }
         catch(Exception e)
         {
-
+            e.printStackTrace();
+            resp.setStatus(500);
         }
     }
 

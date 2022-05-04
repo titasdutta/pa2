@@ -69,9 +69,11 @@ public class OrderServlet extends HttpServlet {
                 ps.setString(6,phone);
                 ps.setString(7, shipping);
                 ps.executeUpdate();
-                RequestDispatcher rd = req.getRequestDispatcher("order_list");
-                rd.forward(req, resp);
+
             }
+            RequestDispatcher rd = req.getRequestDispatcher("order_details");
+            rd.forward(req, resp);
+            resp.setStatus(200);
         } catch(Exception e){
             e.printStackTrace();
             resp.setStatus(500);
