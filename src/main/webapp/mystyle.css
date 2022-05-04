@@ -1,3 +1,5 @@
+@import url('/font-awesome-4.6.3/css/font-awesome.min.css');
+
 .header{background-color: #333; overflow: hidden;}
 .header a{
     float: left;
@@ -61,4 +63,25 @@ td a {
     text-decoration: none;
 }
 
+.rating > input{
+    display: none;
+}
+
+.rating > label:before{
+    content: '\f005';
+    font-family: FontAwesome;
+}
+
+.rating > label{
+    color: DarkGrey;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label{ color: Blue;}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label{color:DodgerBlue;}
 
