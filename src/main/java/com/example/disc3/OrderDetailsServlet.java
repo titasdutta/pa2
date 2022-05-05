@@ -40,7 +40,7 @@ public class OrderDetailsServlet extends HttpServlet {
             DataSource ds = (DataSource) env.lookup("jdbc/inf124");
             Connection connection = ds.getConnection();
             Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("Select * from orders");
+            ResultSet resultSet = stmt.executeQuery("Select * from orders ORDER BY order_id DESC");
             resp.setContentType("application/json");
             JsonArray order = new JsonArray();
             HttpSession session = req.getSession(true);
