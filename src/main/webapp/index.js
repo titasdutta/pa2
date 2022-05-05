@@ -75,3 +75,93 @@ function generateRecentDesc(table_row, result, start){
     table_row = table_row + "</tr>";
     return table_row;
 }
+
+document.getElementById("star1").addEventListener('change', function() {
+    if(document.getElementById("star1").checked){
+        jQuery.ajax({
+            url: "./ratings",
+            data: {
+                "rating" : 1
+            },
+            method: "POST",
+            success: function(result){
+                console.log("Successful Insertion into Ratings!");
+            },
+            error: function(result){
+                console.log("Something went wrong!");
+            }
+        });
+    }
+});
+
+document.getElementById("star2").addEventListener('change', function() {
+    if(document.getElementById("star2").checked){
+        jQuery.ajax({
+            url: "./ratings",
+            data: {
+                "rating" : 2
+            },
+            method: "POST",
+            success: function(result){
+                console.log("Successful Insertion into Ratings!");
+            },
+            error: function(result){
+                console.log("Something went wrong!");
+            }
+        });
+    }
+});
+
+document.getElementById("star3").addEventListener('change', function() {
+    if(document.getElementById("star3").checked){
+        jQuery.ajax({
+            url: "./ratings",
+            data: {
+                "rating" : 3
+            },
+            method: "POST",
+            success: function(result){
+                console.log("Successful Insertion into Ratings!");
+            },
+            error: function(result){
+                console.log("Something went wrong!");
+            }
+        });
+    }
+});
+
+document.getElementById("star4").addEventListener('change', function() {
+    if(document.getElementById("star4").checked){
+        jQuery.ajax({
+            url: "./ratings",
+            data: {
+                "rating" : 4
+            },
+            method: "POST",
+            success: function(result){
+                console.log("Successful Insertion into Ratings!");
+            },
+            error: function(result){
+                console.log("Something went wrong!");
+            }
+        });
+    }
+});
+
+document.getElementById("star5").addEventListener('change', function() {
+    if(document.getElementById("star5").checked){
+        jQuery.ajax({
+            url: "./ratings",
+            data: {
+                "rating" : 5
+            },
+            method: "POST",
+            success: function(result){
+                console.log("Successful Insertion into Ratings!");
+            },
+            error: function(result){
+                console.log("Something went wrong!");
+            }
+        });
+    }
+});

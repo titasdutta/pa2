@@ -40,11 +40,11 @@
             </label>
             <label>
                 <span>Postcode / ZIP <span class="required">*</span></span>
-                <input id="zip" type="tel" inputmode="numeric" name="city" placeholder="Format should only be 5 numbers (e.g. 90032)">
+                <input id="zip" type="tel" inputmode="numeric" name="city" maxlength="5" placeholder="Format should only be 5 numbers (e.g. 90032)">
             </label>
             <label>
                 <span>Phone <span class="required">*</span></span>
-                <input id="phone" type="tel" name="city" placeholder="10 digits phone number (e.g. 8054677890)">
+                <input id="phone" type="tel" name="city" maxlength="10" placeholder="10 digits phone number (e.g. 8054677890)">
             </label>
             <label>
                 <span>Email Address <span class="required">*</span></span>
@@ -60,7 +60,7 @@
             </label>
             <label>
                 <span>Expiry <span class="required">*</span></span>
-                <input id="expiry" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" name="city">
+                <input id="expiry" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="5" placeholder="MM/YY format" name="city">
             </label>
             <span>Shipping <span class="required">*</span></span>
                 <select id="shipping" name="selection">

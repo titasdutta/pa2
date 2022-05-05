@@ -93,6 +93,7 @@ function checkCredit(messages){
     var cvv = document.getElementById("cvv").value;
     var expiry = document.getElementById("expiry").value;
     var digits = /^[0-9]+$/;
+    var expiry_format = /^(0[1-9]|1[0-2])\/\d{2}$/;
 
     if(!credit_card){
         messages.push("Please enter a credit card number!");
@@ -104,6 +105,12 @@ function checkCredit(messages){
         messages.push("Please enter a CVV!");
     } else if(!cvv.match(digits)) {
         messages.push("CVV should only contain digits 0-9!");
+    }
+
+    if(!expiry){
+        messages.push("Please enter an expiry date!");
+    } else if(!expiry.match(expiry_format)) {
+        messages.push("Please match expiration date format!");
     }
 }
 
