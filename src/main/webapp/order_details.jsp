@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <%@ page import = "java.io.*,java.util.*,java.sql.*"%>
 <%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -24,8 +25,8 @@
 
     <c:forEach var = "row" items = "${result.rows}">
         <tr>
-           <td> <c:out value = "${row.id}"/></td>
-           <td> <c:out value = "${row.product_name}"/></td>
+           <td> <c:out value = "${row.order_id}"/></td>
+           <td> <c:out value = "${row.product}"/></td>
            <td> <c:out value = "${row.quantity}"/></td>
            <td> <c:out value = "${row.price}"/></td>
            <td> <c:out value = "${row.fname}"/></td>
@@ -36,6 +37,6 @@
     </c:forEach>
 </table>
 <a href="./index.html">Go Back to Home Page</a>
-<script src="./order_details.js"></script>
+
 </body>
 </html>
