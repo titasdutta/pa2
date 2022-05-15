@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <%@ page import = "java.io.*,java.util.*,java.sql.*"%>
 <%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,6 +23,9 @@
      <sql:query dataSource = "jdbc/inf124" var = "result">
         SELECT * from product p;
      </sql:query>
+     <sql:query dataSource = "jdbc/inf124" var = "recent">
+        Select * from orders ORDER BY order_id DESC LIMIT 5;
+     </sql:query>
     <div class = "header">
         <ul>
             <li><a href="./index.html">Home</a></li>
@@ -35,9 +39,49 @@
     <div class = "products">
         <h1>Products</h1>
         <table id = "store_items">
+        <tr>
+            <c:forEach var = "row" end="4" items = "${result.rows}">
+                <td><a href="./detailed_description.html?name=${row.pname}"><img src="${row.image}"></a></td>
+            </c:forEach>
+        </tr>
+        <tr>
+            <c:forEach var = "row" end="4" items = "${result.rows}">
+                <td>
+                    <a href="./detailed_description.html?name=${row.pname}" id="${row.pname}">
+                        <c:out value = "${row.pname}"/>
+                    </a>
+                    <br> $ <c:out value = "${row.price}"/>
+                </td>
+            </c:forEach>
+        </tr>
+        <tr>
+            <c:forEach var = "row" begin="5" end="9" items = "${result.rows}">
+                <td><a href="./detailed_description.html?name=${row.pname}"><img src="${row.image}"></a></td>
+            </c:forEach>
+        </tr>
+        <tr>
+            <c:forEach var = "row" begin="5" end="9" items = "${result.rows}">
+                <td>
+                    <a href="./detailed_description.html?name=${row.pname}" id="${row.pname}">
+                        <c:out value = "${row.pname}"/>
+                    </a>
+                    <br> $ <c:out value = "${row.price}"/>
+                </td>
+            </c:forEach>
+        </tr>
         </table>
         <h2>Your Past Orders: </h2>
         <table id="orders">
+        <tr>
+            <c:forEach var = "row" items = "${recent.rows}">
+                <td>
+                    <a href="./detailed_description.html?name=${row.product}" id="${row.product}">
+                        <c:out value = "${row.product}"/>
+                    </a>
+                    <br> $ <c:out value = "${row.price}"/>
+                </td>
+            </c:forEach>
+        </tr>
         </table>
         <p> Please rate this order: </br> </p>
         <div id="rating" class="rating">
