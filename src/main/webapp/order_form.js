@@ -152,7 +152,7 @@ document.getElementById("place_order").onclick = function() {
             method: "POST",
             success: function(result){
                 alert("Successfully Placed Order!");
-                window.location.href = "./order_details.html";
+                window.location.href = "./order_details.jsp";
             },
             error: function(result){
                 console.log("MESSED UP");
